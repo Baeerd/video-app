@@ -1,12 +1,15 @@
 <template>
   <div class="app-container">
-    video
+    <nav-bar title="视频" fixed="true" safe-area-inset-top="true"></nav-bar>
+    <cell value="视频标题:" icon="location-o" />
         <video-player  class="video-player vjs-custom-skin" style="margin-bottom: 20px;" ref="videoPlayer" :playsinline="true"
                        :options="playerOptions"></video-player>
 
     <div>
-      <grid :column-num="2">
-        <grid-item v-for="value in 8" :key="value" icon="photo-o" text="视频" />
+      <cell value="视频列表:" icon="location-o" />
+
+      <grid :column-num="2" >
+        <grid-item v-for="value in 15" :key="value" icon="photo-o" :text="value" dot />
       </grid>
     </div>
 
@@ -17,7 +20,7 @@
 <script>
     import { videoPlayer } from 'vue-video-player'
     import 'video.js/dist/video-js.css'
-    import { Grid, GridItem } from 'vant';
+    import { NavBar, Grid, GridItem, Cell } from 'vant';
     export default {
         data() {
             return {
@@ -60,8 +63,10 @@
         },
         components: {
             videoPlayer,
+            NavBar,
             Grid,
-            GridItem
+            GridItem,
+            Cell
         },
         methods: {
 

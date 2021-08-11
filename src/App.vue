@@ -1,14 +1,9 @@
 <template>
   <div id="app">
-    <nav-bar title="标题" left-text="返回" left-arrow>
-      <template #right>
-        <van-icon name="search" size="18" />
-      </template>
-    </nav-bar>
     <router-view/>
-    <tabbar v-model="active">
-      <tabbar-item icon="home-o" to="/" dot>视频</tabbar-item>
-      <tabbar-item icon="search" to="/exam" badge="5">考试</tabbar-item>
+    <tabbar v-model="active" placeholder="true">
+      <tabbar-item icon="home-o" to="/" badge="15">视频</tabbar-item>
+      <tabbar-item icon="search" to="/exam" dot>考试</tabbar-item>
     </tabbar>
   </div>
 </template>
