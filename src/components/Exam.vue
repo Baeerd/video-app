@@ -1,6 +1,23 @@
 <template>
   <div class="app-container">
     <nav-bar title="考试" fixed="true" safe-area-inset-top="true" ></nav-bar>
+
+    <cell title="试卷列表:" icon="location-o" :value="examName" is-link @click="showPopup()"/>
+
+    <popup v-model="show"
+           round
+           closeable
+           close-icon="close"
+           position="bottom"
+           :style="{ height: '30%' }" >
+
+      <cell title="标题" />
+      <cell title="试卷名称1" is-link value="选择" @click="checkExam(1)"/>
+      <cell title="试卷名称2" is-link value="选择" @click="checkExam(2)"/>
+      <cell title="试卷名称3" is-link value="选择" @click="checkExam(3)"/>
+
+    </popup>
+
     <grid :border="false" :column-num="1">
       <grid-item>
         1啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
@@ -71,12 +88,14 @@
 </template>
 
 <script>
-    import { NavBar, Grid, GridItem, RadioGroup, Radio, Checkbox, CheckboxGroup, Tabbar, TabbarItem, Button, Dialog  } from 'vant';
+    import { NavBar, Grid, GridItem, RadioGroup, Radio, Checkbox, CheckboxGroup, Tabbar, TabbarItem, Button, Dialog, Cell, Popup  } from 'vant';
     export default {
         data() {
             return {
                 radio:1,
-                result: ['a', 'b']
+                result: ['a', 'b'],
+                show:false,
+                examName:'试卷1'
             }
         },
         components: {
@@ -90,9 +109,18 @@
             Tabbar,
             TabbarItem,
             VanButton:Button,
-            Dialog
+            Dialog,
+            Cell,
+            Popup
         },
         methods: {
+          showPopup() {
+              this.show = true;
+          },
+          checkExam(examIndex) {
+              this.examName = '试卷'+examIndex;
+              this.show = false;
+          },
           submitExam() {
               Dialog.confirm({
                   title: '提交',

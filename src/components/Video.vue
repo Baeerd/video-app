@@ -2,11 +2,28 @@
   <div class="app-container">
     <nav-bar title="视频" fixed="true" safe-area-inset-top="true"></nav-bar>
     <cell value="视频标题:" icon="location-o" />
-        <video-player  class="video-player vjs-custom-skin" style="margin-bottom: 20px;" ref="videoPlayer" :playsinline="true"
-                       :options="playerOptions"></video-player>
+
+    <div class="course_node_video">
+      <video-player  class="video-player vjs-custom-skin" style="margin-bottom: 20px;" ref="videoPlayer" :playsinline="true"
+                     :options="playerOptions"></video-player>
+    </div>
 
     <div>
-      <cell value="视频列表:" icon="location-o" />
+      <cell title="视频列表:" icon="location-o" :value="videoTypeName" is-link @click="showPopup()"/>
+
+      <popup v-model="show"
+             round
+             closeable
+             close-icon="close"
+             position="bottom"
+             :style="{ height: '30%' }" >
+
+        <cell title="标题" />
+        <cell title="视频类别1" is-link value="选择" @click="checkVideo(1)"/>
+        <cell title="视频类别2" is-link value="选择" @click="checkVideo(2)"/>
+        <cell title="视频类别3" is-link value="选择" @click="checkVideo(3)"/>
+
+      </popup>
 
       <grid :column-num="2" >
         <grid-item v-for="value in 15" :key="value" icon="photo-o" :text="value" dot />
@@ -20,7 +37,7 @@
 <script>
     import { videoPlayer } from 'vue-video-player'
     import 'video.js/dist/video-js.css'
-    import { NavBar, Grid, GridItem, Cell } from 'vant';
+    import { NavBar, Grid, GridItem, Cell, Popup } from 'vant';
     export default {
         data() {
             return {
@@ -58,7 +75,9 @@
                         remainingTimeDisplay: false,
                         fullscreenToggle: true // 全屏按钮
                     }
-                }
+                },
+                show : false,
+                videoTypeName:"视频类别1"
             }
         },
         components: {
@@ -66,14 +85,23 @@
             NavBar,
             Grid,
             GridItem,
-            Cell
+            Cell,
+            Popup
         },
         methods: {
-
+            showPopup() {
+                this.show = true;
+            },
+            checkVideo(videoIndex) {
+                this.videoTypeName = '视频类别'+videoIndex;
+                this.show = false;
+            }
         }
     }
 </script>
 <style scoped>
-
+  .course_node_video >>> .vjs-progress-control{
+    pointer-events: none;
+  }
 </style>
 
