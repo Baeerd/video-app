@@ -1,8 +1,6 @@
 <template>
   <div class="app-container">
-    <nav-bar title="考试" :fixed="true" :safe-area-inset-top="true" ></nav-bar>
-
-    <cell title="试卷列表:" icon="location-o" :value="examName" is-link @click="showPopup()"/>
+    <cell title="试卷列表:" icon="todo-list-o" :value="examName" is-link @click="showPopup()"/>
 
     <popup v-model="show"
            round

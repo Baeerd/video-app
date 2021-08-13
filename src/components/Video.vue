@@ -1,7 +1,6 @@
 <template>
   <div class="app-container">
-    <nav-bar title="视频" fixed="true" safe-area-inset-top="true"></nav-bar>
-    <cell value="视频标题:" icon="location-o" />
+    <cell value="视频标题:" icon="tv-o" />
 
     <div class="course_node_video">
       <video-player  class="video-player vjs-custom-skin" style="margin-bottom: 20px;" ref="videoPlayer" :playsinline="true"
@@ -9,7 +8,7 @@
     </div>
 
     <div>
-      <cell title="视频列表:" icon="location-o" :value="videoTypeName" is-link @click="showPopup()"/>
+      <cell title="视频列表:" icon="todo-list-o" :value="videoTypeName" is-link @click="showPopup()"/>
 
       <popup v-model="show"
              round
@@ -26,7 +25,7 @@
       </popup>
 
       <grid :column-num="2" >
-        <grid-item v-for="value in 15" :key="value" icon="photo-o" :text="value" dot />
+        <grid-item v-for="value in 15" :key="value" icon="photo-o" :text="videoName+value" dot />
       </grid>
     </div>
 
@@ -41,6 +40,7 @@
     export default {
         data() {
             return {
+                videoName:'视频',
                 paused: true,
                 learningDuration: {
                     id: '',
