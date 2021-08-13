@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <nav-bar title="考试" fixed="true" safe-area-inset-top="true" ></nav-bar>
+    <nav-bar title="考试" :fixed="true" :safe-area-inset-top="true" ></nav-bar>
 
     <cell title="试卷列表:" icon="location-o" :value="examName" is-link @click="showPopup()"/>
 
@@ -88,6 +88,7 @@
 </template>
 
 <script>
+    import { mapActions } from 'vuex'
     import { NavBar, Grid, GridItem, RadioGroup, Radio, Checkbox, CheckboxGroup, Tabbar, TabbarItem, Button, Dialog, Cell, Popup  } from 'vant';
     export default {
         data() {
@@ -114,6 +115,10 @@
             Popup
         },
         methods: {
+          ...mapActions('querystore', ['findAirStation']),
+          queryData() {
+              this.findAirStation({"funType":'21',"eqType":"1"})
+          },
           showPopup() {
               this.show = true;
           },
@@ -128,6 +133,7 @@
               })
               .then(() => {
                   // on confirm
+                  this.queryData();
               })
               .catch(() => {
                   // on cancel

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <router-view/>
-    <tabbar v-model="active" placeholder="true">
+    <tabbar v-model="active" :placeholder="true">
       <tabbar-item icon="home-o" to="/" badge="15">视频</tabbar-item>
       <tabbar-item icon="search" to="/exam" dot>考试</tabbar-item>
     </tabbar>
