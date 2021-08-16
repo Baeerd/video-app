@@ -7,6 +7,7 @@
     </nav-bar>
 
     <router-view/>
+
     <tabbar v-model="active" :placeholder="true">
       <tabbar-item icon="tv-o" badge="15" to="/video">视频</tabbar-item>
       <tabbar-item icon="newspaper-o" dot to="/exam">考试</tabbar-item>

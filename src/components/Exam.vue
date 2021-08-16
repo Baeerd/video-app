@@ -142,8 +142,8 @@
 </script>
 
 <style scoped>
-  .afterCheck{
-    background-color: #bfc7d3;
+  .app-container {
+    background-color: #ffffff;
   }
 </style>
 

@@ -58,7 +58,11 @@ exports.cssLoaders = function (options) {
   return {
     css: generateLoaders(),
     postcss: generateLoaders(),
-    less: generateLoaders('less'),
+    less: generateLoaders('less', {
+      modifyVars: {
+        'hack': `true; @import "${path.join(__dirname, '../src/assets/less/index.less')}";`
+      }
+    }),
     sass: generateLoaders('sass', { indentedSyntax: true }),
     scss: generateLoaders('sass'),
     stylus: generateLoaders('stylus'),
